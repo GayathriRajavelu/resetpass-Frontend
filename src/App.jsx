@@ -9,7 +9,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Register />} />
-        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:token" element={<ResetPassword />} />
@@ -17,5 +16,5 @@ function App() {
     </BrowserRouter>
   );
 }
-console.log(import.meta.env.VITE_API_URL);
+
 export default App;

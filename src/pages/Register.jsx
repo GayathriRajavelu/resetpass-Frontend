@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import API from "../services/api";
-import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -10,47 +10,53 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
     try {
-      await API.post("/register", { name, email, password });
+      await API.post("/auth/register", {
+        name,
+        email,
+        password,
+      });
+
       alert("Registration successful");
       navigate("/login");
-    } catch (err) {
-      alert(err.response?.data?.message || "Register failed");
+    } catch (error) {
+      alert(error.response?.data?.message || "Register failed");
     }
   };
 
   return (
-    <div className="container">
+    <div className="auth-container">
       <h2>Register</h2>
 
       <form onSubmit={handleRegister}>
         <input
-          type="text"
           placeholder="Name"
-          required
           onChange={(e) => setName(e.target.value)}
+          required
         />
 
         <input
-          type="email"
           placeholder="Email"
-          required
+          type="email"
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
 
         <input
-          type="password"
           placeholder="Password"
-          required
+          type="password"
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
 
         <button type="submit">Register</button>
       </form>
 
-      <span className="link" onClick={() => navigate("/login")}>
-        Already have an account? Login
-      </span>
+      <p>
+        Already have an account?{" "}
+        <Link to="/login">Login</Link>
+      </p>
     </div>
   );
 };
