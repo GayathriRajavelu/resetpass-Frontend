@@ -7,7 +7,7 @@ const ForgotPassword = () => {
   const handleForgot = async (e) => {
     e.preventDefault();
     try {
-      const res = await API.post("/forgot-password", { email });
+      const res = await API.post("auth/forgot-password", { email });
       alert(res.data.message);
     } catch (err) {
       alert(err.response?.data?.message || "Error");

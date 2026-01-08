@@ -10,7 +10,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await API.post("/login", { email, password });
+      await API.post("/auth/login", { email, password });
       alert("Login successful");
     } catch (err) {
       alert(err.response?.data?.message || "Login failed");

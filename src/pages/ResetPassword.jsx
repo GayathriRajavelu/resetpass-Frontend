@@ -10,7 +10,7 @@ const ResetPassword = () => {
   const handleReset = async (e) => {
     e.preventDefault();
     try {
-      const res = await API.post(`/reset-password/${token}`, { password });
+      const res = await API.post(`auth/reset-password/${token}`, { password });
       alert(res.data.message);
       navigate("/login");
     } catch (err) {
